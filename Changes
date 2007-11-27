@@ -1,0 +1,15 @@
+----------------------------------------------------------------------
+r43:  rafael | 2005-10-12 12:33:03 +0200
+
+Add new module Perl-Unsafe-Signals 0.01
+----------------------------------------------------------------------
+r45:  rafael | 2005-10-13 15:19:33 +0200
+
+Don't use a source filter, but an UNSAFE_SIGNALS function with a (&) prototype
+instead. Suggested by Scott McWhirter. Side-effect: a semi-colon is now needed
+after an UNSAFE_SIGNALS block.
+----------------------------------------------------------------------
+r46:  rafael | 2005-10-13 15:21:12 +0200
+
+Bump version to 0.02
+----------------------------------------------------------------------

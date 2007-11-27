@@ -2,24 +2,22 @@ package Perl::Unsafe::Signals;
 
 use strict;
 use XSLoader ();
-use Filter::Simple;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 XSLoader::load 'Perl::Unsafe::Signals', $VERSION;
 
-sub new {
-    bless { old => push_unsafe_flag() };
+sub import {
+    no strict 'refs';
+    *{caller() . '::UNSAFE_SIGNALS'} = *UNSAFE_SIGNALS;
 }
 
-sub DESTROY {
-    my $self = shift;
-    pop_unsafe_flag( $self->{old} );
+sub UNSAFE_SIGNALS (&) {
+    my $code = shift;
+    my $oldflags = push_unsafe_flag();
+    $code->();
+    pop_unsafe_flag( $oldflags );
 }
-
-FILTER {
-    s/^\s*UNSAFE_SIGNALS\s*{/{ my \$__p_u_s = new Perl::Unsafe::Signals;/gm;
-};
 
 1;
 
@@ -39,7 +37,7 @@ Perl::Unsafe::Signals - Allow unsafe handling of signals in selected blocks
     UNSAFE_SIGNALS {
 	# we want to interrupt this after one minute
 	call_some_long_XS_function();
-    }
+    };
     alarm(0);
     # ... continue ...
 
@@ -65,7 +63,8 @@ in which signals will be handled "unsafely".
 
 =head1 NOTES
 
-This module is a source filter. Its evilness ratio is therefore non-null.
+This module used to be a source filter, but is no longer, thanks to Scott
+McWhirter.
 
 =head1 AUTHOR
 

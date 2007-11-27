@@ -1,4 +1,4 @@
-Perl-Unsafe-Signals v0.01
+Perl-Unsafe-Signals v0.02
 =========================
 
 Another quick XS hack to the guts of perl.
