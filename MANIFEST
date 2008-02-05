@@ -3,6 +3,7 @@ Makefile.PL
 Signals.xs
 Signals.pm
 MANIFEST
+MANIFEST.SKIP
 t/01nofilter.t
 t/02filter.t
 README
