@@ -8,4 +8,14 @@ WriteMakefile(
     VERSION_FROM => 'Signals.pm',
     LICENSE => 'perl',
     ABSTRACT => "Allow unsafe handling of signals in selected blocks",
+    META_MERGE => {
+        'meta-spec' => { version => 2 },
+        resources => {
+            repository => {
+                type => 'git',
+                url  => 'https://github.com/rgs/Perl-Unsafe-Signals.git',
+                web  => 'https://github.com/rgs/Perl-Unsafe-Signals',
+            },
+        },
+    },
 );
