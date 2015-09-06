@@ -1,11 +1,4 @@
 Perl-Unsafe-Signals v0.02
 =========================
 
-Another quick XS hack to the guts of perl.
-Allows to enable unsafe signals just for a short period of time.
-
-This module is experimental.
-You will need perl 5.8.1 or more for this to run or be useful.
-
-Copyright (c) 2005 Rafael Garcia-Suarez. This program is free software; you
-may redistribute it and/or modify it under the same terms as Perl itself.
+Allows to enable unsafe signal delivery just for a short period of time.

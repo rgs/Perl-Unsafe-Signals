@@ -61,6 +61,9 @@ run for a long time and for which you want to set a timeout.
 This module therefore allows you to define C<UNSAFE_SIGNALS> blocks
 in which signals will be handled "unsafely".
 
+Note that, no matter how short you make the unsafe block, it will still
+be unsafe. Use with caution.
+
 =head1 NOTES
 
 This module used to be a source filter, but is no longer, thanks to Scott
@@ -68,8 +71,10 @@ McWhirter.
 
 =head1 AUTHOR
 
-Copyright (c) 2005 Rafael Garcia-Suarez. This program is free software; you
+Copyright (c) 2005, 2015 Rafael Garcia-Suarez. This program is free software; you
 may redistribute it and/or modify it under the same terms as Perl itself.
+
+A git repository for the sources is at L<https://github.com/rgs/Perl-Unsafe-Signals>.
 
 =head1 SEE ALSO
 
