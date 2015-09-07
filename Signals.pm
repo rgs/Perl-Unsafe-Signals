@@ -14,9 +14,23 @@ sub import {
 
 sub UNSAFE_SIGNALS (&) {
     my $code = shift;
-    my $oldflags = push_unsafe_flag();
+    my $restore = Perl::Unsafe::Signals::Restore->new;
     $code->();
-    pop_unsafe_flag( $oldflags );
+}
+
+{
+    package # helper class, hide from PAUSE indexer
+	Perl::Unsafe::Signals::Restore;
+    sub new {
+	my($class) = @_;
+	my $oldflags = Perl::Unsafe::Signals::push_unsafe_flag();
+	bless \$oldflags, $class;
+    }
+    sub DESTROY {
+	my $self = shift;
+	my $oldflags = $$self;
+	Perl::Unsafe::Signals::pop_unsafe_flag($oldflags);
+    }
 }
 
 1;
