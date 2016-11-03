@@ -7,10 +7,9 @@ our $VERSION = '0.03';
 
 XSLoader::load 'Perl::Unsafe::Signals', $VERSION;
 
-sub import {
-    no strict 'refs';
-    *{caller() . '::UNSAFE_SIGNALS'} = *UNSAFE_SIGNALS;
-}
+use parent 'Exporter';
+
+our @EXPORT = ( 'UNSAFE_SIGNALS' );
 
 sub UNSAFE_SIGNALS (&) {
     my $code = shift;
