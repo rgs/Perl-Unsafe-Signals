@@ -20,16 +20,16 @@ sub UNSAFE_SIGNALS (&) {
 
 {
     package # helper class, hide from PAUSE indexer
-	Perl::Unsafe::Signals::Restore;
+        Perl::Unsafe::Signals::Restore;
     sub new {
-	my($class) = @_;
-	my $oldflags = Perl::Unsafe::Signals::push_unsafe_flag();
-	bless \$oldflags, $class;
+        my($class) = @_;
+        my $oldflags = Perl::Unsafe::Signals::push_unsafe_flag();
+        bless \$oldflags, $class;
     }
     sub DESTROY {
-	my $self = shift;
-	my $oldflags = $$self;
-	Perl::Unsafe::Signals::pop_unsafe_flag($oldflags);
+        my $self = shift;
+        my $oldflags = $$self;
+        Perl::Unsafe::Signals::pop_unsafe_flag($oldflags);
     }
 }
 
@@ -49,8 +49,8 @@ Perl::Unsafe::Signals - Allow unsafe handling of signals in selected blocks
     local $SIG{ALRM} = sub { ... };
     alarm(60);
     UNSAFE_SIGNALS {
-	# we want to interrupt this after one minute
-	call_some_long_XS_function();
+        # we want to interrupt this after one minute
+        call_some_long_XS_function();
     };
     alarm(0);
     # ... continue ...
